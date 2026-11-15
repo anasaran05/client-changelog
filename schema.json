@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://unpkg.com/client-changelog/schema.json",
+  "title": "client-changelog configuration",
+  "description": "Configuration for client-changelog (changelog.config.json at the repo root).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "dir": {
+      "type": "string",
+      "minLength": 1,
+      "default": "changelog",
+      "description": "Folder, relative to the repo root, that holds the month files."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "default": "Website Changes",
+      "description": "Title used in month file headings: \"# <title> — November 2026\"."
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5,
+      "pattern": "^[^\\s\\d]+$",
+      "default": "$",
+      "description": "Currency symbol for complimentary entries, e.g. \"$\", \"€\", \"£\", \"₹\"."
+    },
+    "sources": {
+      "type": "array",
+      "default": ["manual"],
+      "uniqueItems": true,
+      "description": "Source keywords accepted besides commit hashes and \"pending\", e.g. \"manual\", \"sanity\", \"shopify\".",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]*$",
+        "examples": ["manual", "sanity", "shopify", "webflow", "wordpress", "contentful"]
+      }
+    },
+    "ignorePaths": {
+      "type": "array",
+      "default": [],
+      "description": "Files or folders, relative to the repo root. Commits that only touch these (and the changelog folder) don't need an entry.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "default": ["Added", "Updated", "Removed", "Fixed", "Complimentary", "Internal (not shown to client)"],
+      "description": "Entry sections, in order. Used for new month files and the agent instructions.",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

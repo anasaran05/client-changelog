@@ -1,0 +1,58 @@
+{
+  "name": "client-changelog",
+  "version": "0.1.0",
+  "description": "Client-readable monthly changelogs, cross-checked against git",
+  "keywords": [
+    "changelog",
+    "cli",
+    "freelance",
+    "agency",
+    "client",
+    "claude-code",
+    "agents",
+    "git"
+  ],
+  "author": "anasaran05",
+  "license": "MIT",
+  "homepage": "https://github.com/anasaran05/client-changelog#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anasaran05/client-changelog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/anasaran05/client-changelog/issues"
+  },
+  "type": "module",
+  "bin": {
+    "client-changelog": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schema.json": "./schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "schema.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test test/parse.test.mjs test/check.test.mjs test/init.test.mjs test/new-month.test.mjs test/month.test.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
